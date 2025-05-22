@@ -1,7 +1,7 @@
 
 # 🛡️ CyberScan
 
-**AI-powered automated vulnerability scanner built using n8n + Nessus.**
+AI-powered automated vulnerability scanner built using n8n + Nessus.
 
 CyberScan is a modular, open-source cybersecurity automation tool that simulates vulnerability scans, asset discovery, AI risk triage, and automated alerts for modern security teams and learners.
 
@@ -11,7 +11,7 @@ Designed to foster learning, automation, and compliance-readiness, CyberScan dem
 
 ---
 
-## 🚀 Features
+🚀 Features
 
 - 🔍 Network segment definition via environment configuration  
 - 🤖 Simulated asset discovery and scan workflows  
@@ -23,14 +23,15 @@ Designed to foster learning, automation, and compliance-readiness, CyberScan dem
 
 ---
 
-## 🧭 Workflow Overview
+🧭 Workflow Overview
 
 ![CyberScan Workflow](docs/CyberScan_Workflow.png)
 
+📄 [Download CyberScan_n8n.json](workflows/CyberScan_n8n.json)
 
-## 🧠 Node Documentation
+🧠 Node Documentation
 
-### 🌐 DISC – Initialize Network Segments
+🌐 DISC – Initialize Network Segments
 Defines network ranges to be scanned. Uses environment variable:
 
 ```env
@@ -39,7 +40,7 @@ NETWORK_SEGMENTS=["192.168.1.0/24", "10.0.0.0/24"]
 
 ---
 
-### 🧪 AI – Process Assets
+🧪 AI – Process Assets
 
 Simulates internal asset discovery using placeholder asset data:
 
@@ -52,49 +53,49 @@ Simulates internal asset discovery using placeholder asset data:
 
 ---
 
-### 🧠 AI – Risk Evaluation
+🧠 AI – Risk Evaluation
 
 Evaluates vulnerabilities and assigns AI Risk Score + LEV path.
 Logic only, no static inputs.
 
 ---
 
-### 📍 AI – Triage Vulnerabilities
+📍 AI – Triage Vulnerabilities
 
 Classifies vulnerabilities into self-healing, expert-review, or monitor groups.
 No sensitive data.
 
 ---
 
-### 🚨 ALERT – LEV Trigger
+🚨 ALERT – LEV Trigger
 
 Detects critical vulnerabilities (AI Risk ≥ 8).
 Condition only, fully safe.
 
 ---
 
-### 📊 UTILS – Field Editor
+📊 UTILS – Field Editor
 
 Adds timestamped group counts.
 Pure logic, no sensitive content.
 
 ---
 
-### 🧮 Code
+🧮 Code
 
 Unpacks summary data for report/export formatting.
 Safe to publish.
 
 ---
 
-### 📝 Summary Node
+📝 Summary Node
 
 Generates formatted HTML vulnerability report.
 No tokens, IPs, or PII exposed.
 
 ---
 
-### 📧 Security Team Alert
+📧 Security Team Alert
 
 Sends HTML alert emails to internal teams using this format:
 
@@ -106,7 +107,7 @@ Timestamp: {{ new Date().toISOString() }}
 
 ---
 
-### 📤 EXPORT – Save to Sheet
+📤 EXPORT – Save to Sheet
 
 Appends summary to Google Sheets with fields:
 
@@ -120,7 +121,7 @@ Appends summary to Google Sheets with fields:
 
 ---
 
-### 📬 Send Email
+📬 Send Email
 
 Sends full HTML vulnerability report to team inbox. Uses environment variables:
 
@@ -131,9 +132,9 @@ EMAIL_TO=security_team@example.com
 
 ---
 
-## 🛠️ Setup
+🛠️ Setup
 
-1. **Clone the repository**
+1. Clone the repository
 2. Create a `.env` file in your local environment:
 
 ```env
@@ -154,7 +155,7 @@ EMAIL_TO=security_team@example.com
 
 ---
 
-## 🔐 Security Notes
+🔐 Security Notes
 
 * No IPs, tokens, usernames, or secrets are included in the workflow
 * Environment variables are used for all sensitive config
@@ -162,7 +163,7 @@ EMAIL_TO=security_team@example.com
 
 ---
 
-## 📂 Project Structure
+📂 Project Structure
 
 ```
 CyberScan/
@@ -175,13 +176,13 @@ CyberScan/
 
 ---
 
-## 🤝 Contributing
+🤝 Contributing
 
 Fork this repo to adapt it to your environment. PRs are welcome for logic improvements, integrations, or optimizations.
 
 ---
 
-## 🔧 Built With
+🔧 Built With
 
 * [n8n](https://n8n.io)
 * [Tenable Nessus](https://www.tenable.com/products/nessus)
@@ -189,7 +190,7 @@ Fork this repo to adapt it to your environment. PRs are welcome for logic improv
 
 ---
 
-## 📬 Contact
+📬 Contact
 
 📧 [cyberpulse.solutions41@gmail.com](mailto:cyberpulse.solutions41@gmail.com) (placeholder)
 
