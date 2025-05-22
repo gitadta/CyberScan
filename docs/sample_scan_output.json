@@ -1,0 +1,16 @@
+{
+  "vulnerabilities": [
+    {
+      "id": "vuln-001",
+      "cve": "CVE-2023-1234",
+      "risk": "High",
+      "ip": "10.0.0.1"
+    },
+    {
+      "id": "vuln-002",
+      "cve": "CVE-2024-6789",
+      "risk": "Medium",
+      "ip": "10.0.0.2"
+    }
+  ]
+}
