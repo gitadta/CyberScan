@@ -23,6 +23,11 @@ Designed to foster learning, automation, and compliance-readiness, CyberScan dem
 
 ---
 
+## 🧭 Workflow Overview
+
+![CyberScan Workflow](docs/CyberScan_Workflow.png)
+
+
 ## 🧠 Node Documentation
 
 ### 🌐 DISC – Initialize Network Segments
