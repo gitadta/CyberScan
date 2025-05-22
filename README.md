@@ -29,6 +29,12 @@ Designed to foster learning, automation, and compliance-readiness, CyberScan dem
 
 📄 [Download CyberScan_n8n.json](workflows/CyberScan_n8n.json)
 
+### 🧪 Sample Scan Output
+
+CyberScan simulates real-world vulnerability scan data.  
+📄 [View sample output](docs/sample_scan_output.json)
+
+
 🧠 Node Documentation
 
 🌐 DISC – Initialize Network Segments
