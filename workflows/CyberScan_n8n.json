@@ -40,8 +40,8 @@
     },
     {
       "parameters": {
-        "fromEmail": "xiantani@gmail.com",
-        "toEmail": "bathroomvanitywholesalers@gmail.com",
+        "fromEmail": "sender@example.com",
+        "toEmail": "security_team@example.com",
         "subject": "Alert",
         "html": "=<h2>🚨 Critical Vulnerability Alert!</h2>\n<p>One or more vulnerabilities with an <strong>AI Risk Score ≥ 8</strong> were detected in the latest scan.</p>\n<p>Please review them immediately in the <strong>CyberPulse</strong> report or dashboard.</p>\n\n<p>\n  🔎 <strong>Triggered by:</strong> {{ $workflow.name }}<br>\n  📅 <strong>Timestamp:</strong> {{ new Date().toISOString() }}\n</p>\n\n<p>Stay secure,<br>\n<em>n8n - CyberPulse Automation</em></p>\n",
         "options": {}
