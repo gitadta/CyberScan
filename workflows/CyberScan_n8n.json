@@ -1,86 +1,73 @@
 {
-  "name": "CyberScan Github copy",
+  "name": "CyberScan",
   "nodes": [
     {
       "parameters": {
-        "fromEmail": "your_sender@example.com",
-        "toEmail": "security_team@example.com",
-        "subject": "🛡 Vulnerability Assessment report",
+        "fromEmail": "user@redacted.example",
+        "toEmail": "user@redacted.example",
+        "subject": "\ud83d\udee1 Vulnerability Assessment report",
         "text": "={{ $json.emailBody }}",
         "html": "={{ $json.emailBody }}",
         "options": {}
       },
-      "id": "0870b24e-73db-4732-a523-72d36cee59c3",
+      "id": "af4a3b1e-75c4-43c9-a012-1f6f42d6a668",
       "name": "Send Email",
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 1,
       "position": [
-        -400,
-        1900
-      ],
-      "credentials": {
-        "smtp": {
-          "id": "RM0pJJ95IhrbFLCv",
-          "name": "SMTP account"
-        }
-      }
+        -256,
+        2032
+      ]
     },
     {
       "parameters": {
-        "jsCode": "return items[0].json.groupData.map(obj => ({ json: obj }));"
+        "jsCode": "const base = { ...items[0].json };\nconst arr  = items[0].json.groupData;  // <-- this is an array now\nreturn arr.map(o => ({ json: { ...base, ...o } }));\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -860,
-        1660
+        -720,
+        1824
       ],
-      "id": "8815595e-a521-40be-8293-cb4bcec276fa",
+      "id": "493a607e-3f84-4381-a3e7-d989ca1a076a",
       "name": "Code"
     },
     {
       "parameters": {
-        "fromEmail": "sender@example.com",
-        "toEmail": "security_team@example.com",
+        "fromEmail": "user@redacted.example",
+        "toEmail": "user@redacted.example",
         "subject": "Alert",
-        "html": "=<h2>🚨 Critical Vulnerability Alert!</h2>\n<p>One or more vulnerabilities with an <strong>AI Risk Score ≥ 8</strong> were detected in the latest scan.</p>\n<p>Please review them immediately in the <strong>CyberPulse</strong> report or dashboard.</p>\n\n<p>\n  🔎 <strong>Triggered by:</strong> {{ $workflow.name }}<br>\n  📅 <strong>Timestamp:</strong> {{ new Date().toISOString() }}\n</p>\n\n<p>Stay secure,<br>\n<em>n8n - CyberPulse Automation</em></p>\n",
+        "html": "=<h2>\ud83d\udea8 Critical Vulnerability Alert!</h2>\n<p>One or more vulnerabilities with an <strong>AI Risk Score \u2265 8</strong> were detected in the latest scan.</p>\n<p>Please review them immediately in the <strong>CyberPulse</strong> report or dashboard.</p>\n\n<p>\n  \ud83d\udd0e <strong>Triggered by:</strong> {{ $workflow.name }}<br>\n  \ud83d\udcc5 <strong>Timestamp:</strong> {{ new Date().toISOString() }}\n</p>\n\n<p>Stay secure,<br>\n<em>n8n - CyberPulse Automation</em></p>\n",
         "options": {}
       },
       "type": "n8n-nodes-base.emailSend",
       "typeVersion": 2.1,
       "position": [
-        -400,
-        1200
+        -256,
+        1328
       ],
-      "id": "5fb385bd-0968-4fdd-8cac-bbeb4dae8a6d",
-      "name": "📧 Alert Security Team",
-      "webhookId": "b363c734-e670-40cd-a897-bd79c9a5c286",
-      "credentials": {
-        "smtp": {
-          "id": "RM0pJJ95IhrbFLCv",
-          "name": "SMTP account"
-        }
-      }
+      "id": "8292eab7-99b1-4be0-8894-a9aa66899fd4",
+      "name": "\ud83d\udce7 Alert Security Team"
     },
     {
       "parameters": {
         "content": "Error Handling",
         "height": 460,
-        "width": 860,
+        "width": 760,
         "color": 7
       },
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1940,
-        80
+        -1696,
+        208
       ],
-      "id": "1fbe731c-bd9e-4d95-91cc-2bcac733d83f",
+      "id": "8ecaff7f-49be-4fce-8732-23a7a71fc7a7",
       "name": "Sticky Note"
     },
     {
       "parameters": {
-        "content": "🔐 AUTH \n🌐 Discovery Phase",
+        "content": "\ud83d\udd10 AUTH \n\ud83c\udf10 Discovery Phase",
         "height": 1160,
         "width": 500,
         "color": 5
@@ -88,15 +75,15 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1040,
-        60
+        -896,
+        192
       ],
-      "id": "4c32eb18-9d44-4d0e-8702-045456b8dbcb",
+      "id": "e21efe61-ba6d-4055-a615-0b9016589a1c",
       "name": "Sticky Note1"
     },
     {
       "parameters": {
-        "content": "🧪 SCAN Phase",
+        "content": "\ud83e\uddea SCAN Phase",
         "height": 200,
         "width": 700,
         "color": 2
@@ -104,15 +91,15 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1880,
-        1280
+        -1744,
+        1408
       ],
-      "id": "21fd5ee3-7ad4-40a4-af92-99fa53d295fe",
+      "id": "be553407-b7fe-4a12-9f04-c10432586385",
       "name": "Sticky Note3"
     },
     {
       "parameters": {
-        "content": "🚨 ALERT \n📊 REPORT phase",
+        "content": "\ud83d\udea8 ALERT \n\ud83d\udcca REPORT phase",
         "height": 520,
         "width": 320,
         "color": 6
@@ -120,25 +107,25 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1020,
-        1500
+        -880,
+        1632
       ],
-      "id": "67585ecc-fc87-4c54-84bc-5c160b599ee9",
+      "id": "cf6f4a36-abd5-437c-b959-a531bb1cff06",
       "name": "Sticky Note4"
     },
     {
       "parameters": {
-        "content": "📤 EXPORT phase",
+        "content": "\ud83d\udce4 EXPORT phase",
         "height": 920,
         "color": 6
       },
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -460,
-        1100
+        -320,
+        1232
       ],
-      "id": "529a0bec-7ebc-4551-852c-9faa63d7f110",
+      "id": "2abe7895-306b-4f27-9eb4-03dc28fc678a",
       "name": "Sticky Note5"
     },
     {
@@ -155,16 +142,16 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.2,
       "position": [
-        -860,
-        120
+        -720,
+        256
       ],
-      "id": "0a819a33-967d-4bf4-bc85-e3ff2563432f",
-      "name": "⏱️ Trigger – Scheduled Scan"
+      "id": "36f2235e-2337-42dd-b0f6-b308ccbe8c86",
+      "name": "\u23f1\ufe0f Trigger \u2013 Scheduled Scan"
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "{{ $env.NESSUS_API_URL }}/session",
+        "url": "https://{{NESSUS_HOST}}:{{NESSUS_PORT}}/session",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
@@ -173,7 +160,7 @@
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "{\n  \"username\": \"{{ $env.NESSUS_USER }}\",\n  \"password\": \"{{ $env.NESSUS_PASS }}\"\n}\n",
+        "jsonBody": "{\n  \"username\": \"{{NESSUS_USERNAME}}\",\n  \"password\": \"{{NESSUS_PASSWORD}}\"\n}\n",
         "options": {
           "allowUnauthorizedCerts": true,
           "response": {
@@ -186,11 +173,11 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -860,
-        340
+        -720,
+        480
       ],
-      "id": "c4ac0db7-a571-4b89-b119-99f368d17e46",
-      "name": "🔐 AUTH – Login to Nessus"
+      "id": "207fb4f6-be51-44f3-bc8e-1c0300ee6c52",
+      "name": "\ud83d\udd10 AUTH \u2013 Login to Nessus"
     },
     {
       "parameters": {
@@ -199,7 +186,7 @@
             {
               "id": "6a2b3ad8-a5ae-45a8-98c3-80186948969e",
               "name": "X-Cookie",
-              "value": "={{ $('🔐 AUTH – Login to Nessus').item.headers['set-cookie'][0].split(';')[0] }}\n",
+              "value": "={{ $('\ud83d\udd10 AUTH \u2013 Login to Nessus').item.headers['set-cookie'][0].split(';')[0] }}\n",
               "type": "string"
             }
           ]
@@ -210,34 +197,34 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -860,
-        540
+        -720,
+        672
       ],
-      "id": "fcab6fc5-90b7-4ebe-8919-f107a619d9d2",
-      "name": "🔐 AUTH – Set API Token"
+      "id": "b2e621d7-09b9-497d-8e22-be8d4b8f5a8a",
+      "name": "\ud83d\udd10 AUTH \u2013 Set API Token"
     },
     {
       "parameters": {
-        "functionCode": "const networkSegments = JSON.parse($env.NETWORK_SEGMENTS || '[]');\nreturn { json: { networkSegments } };"
+        "functionCode": "const networkSegments = [process.env.SUBNET_1 || '10.0.0.0/24'];\nreturn { json: { networkSegments } };"
       },
-      "id": "4cbcc3bb-1288-449d-9147-8158e6372f46",
-      "name": "🌐 DISC – Initialize Network Segments",
+      "id": "aeb04468-6753-45b9-bd90-c56993442e53",
+      "name": "\ud83c\udf10 DISC \u2013 Initialize Network Segments",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
       "position": [
-        -860,
-        700
+        -720,
+        832
       ]
     },
     {
       "parameters": {
-        "url": "https://localhost:8834/scans",
+        "url": "https://{{NESSUS_HOST}}:{{NESSUS_PORT}}/scans",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
             {
               "name": "X-Cookie",
-              "value": "={{ 'token=' + $('🔐 AUTH – Set API Token').item.json.body.token }}"
+              "value": "={{ 'token=' + $('\ud83d\udd10 AUTH \u2013 Set API Token').item.json.body.token }}"
             }
           ]
         },
@@ -245,26 +232,26 @@
           "allowUnauthorizedCerts": true
         }
       },
-      "id": "34c4a8c7-918a-4489-9176-2c901493a812",
-      "name": "🌐 DISC – Discover Assets",
+      "id": "67c4d5c4-5b7f-468e-9d29-b0f0db87c278",
+      "name": "\ud83c\udf10 DISC \u2013 Discover Assets",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -860,
-        880
+        -720,
+        1008
       ]
     },
     {
       "parameters": {
-        "functionCode": "return {\n  json: {\n    assets: [\n      {\n        id: \"asset-001\",\n        ipAddress: \"10.0.0.1\",\n        hostName: \"host-a\"\n      },\n      {\n        id: \"asset-002\",\n        ipAddress: \"10.0.0.2\",\n        hostName: \"host-b\"\n      }\n    ]\n  }\n};\n"
+        "functionCode": "// Simulate discovered assets\nreturn {\n  json: {\n    assets: [\n      {\n        id: \"asset-001\",\n        ipAddress: \"192.168.1.100\",\n        hostName: \"webserver-prod-1\"\n      },\n      {\n        id: \"asset-002\",\n        ipAddress: \"192.168.1.101\",\n        hostName: \"database-prod-1\"\n      }\n    ]\n  }\n};"
       },
-      "id": "4e82b300-3fa5-4fbd-9055-8636f0c87a7e",
-      "name": "🧠 AI – Process Assets",
+      "id": "c2fa0cff-bb17-4afa-88ee-5dbd5db39ba2",
+      "name": "\ud83e\udde0 AI \u2013 Process Assets",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
       "position": [
-        -860,
-        1080
+        -720,
+        1216
       ]
     },
     {
@@ -275,77 +262,77 @@
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -1700,
-        1300
+        -1552,
+        1440
       ],
-      "id": "d635e765-4121-4f6a-9898-ecb26c930ff1",
-      "name": "🔄 UTILS – Split Assets"
+      "id": "9ebfe80e-d180-4948-94a7-0b7d5b3a99d9",
+      "name": "\ud83d\udd04 UTILS \u2013 Split Assets"
     },
     {
       "parameters": {
-        "url": "{{ $env.NESSUS_API_URL }}/scans",
+        "url": "https://{{NESSUS_HOST}}:{{NESSUS_PORT}}/scans",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
             {
               "name": "X-Cookie",
-              "value": "={{ $('AUTH – Set API Token').json['X-Cookie'] }}"
+              "value": "={{ 'token=' + $('\ud83d\udd10 AUTH \u2013 Set API Token').item.json.body.token }}"
             }
           ]
         },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={\n  \"uuid\": \"{{ $env.NESSUS_SCAN_UUID }}\",\n  \"settings\": {\n    \"name\": \"Scan – {{ $json.hostName || $json.ipAddress }}\",\n    \"text_targets\": \"{{ $json.ipAddress }}\",\n    \"folder_id\": 3,\n    \"launch_now\": true\n  }\n}\n\n",
+        "jsonBody": "={\n  \"uuid\": \"b81a11db-c0c6-3972-f298-23b38b8bc141b83f50d98587f71a\",\n  \"settings\": {\n    \"name\": \"Scan - {{ $json.hostName || $json.ipAddress }}\",\n    \"text_targets\": \"{{ $json.ipAddress }}\",\n    \"folder_id\": 3,\n    \"launch_now\": true\n  }\n}\n",
         "options": {
           "allowUnauthorizedCerts": true
         }
       },
-      "id": "3022ba53-e2f0-4cf3-872a-889fb65b9311",
-      "name": "🧪 SCAN – Run Nessus",
+      "id": "fc3cc901-05e0-45db-9d18-a233d6bea691",
+      "name": "\ud83e\uddea SCAN \u2013 Run Nessus",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        -1520,
-        1300
+        -1376,
+        1440
       ]
     },
     {
       "parameters": {
-        "functionCode": "return {\n  json: {\n    vulnerabilities: [\n      {\n        id: \"vuln-001\",\n        cve: \"CVE-2023-1234\",\n        risk: \"High\",\n        ip: \"10.0.0.1\"\n      }\n    ]\n  }\n};"
+        "functionCode": "// Simulate scan results\nreturn {\n  json: {\n    vulnerabilities: [\n      {\n        id: \"vuln-001\",\n        cve: \"CVE-2023-1234\",\n        risk: \"High\",\n        ip: \"192.168.1.100\"\n      }\n    ]\n  }\n};"
       },
-      "id": "be2e05e7-3889-465f-bf16-30135e717c1c",
-      "name": "🔍 SCAN – Process Vulnerabilities",
+      "id": "cd19c1f3-4f80-480c-a059-b260e7b1d609",
+      "name": "\ud83d\udd0d SCAN \u2013 Process Vulnerabilities",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
       "position": [
-        -1320,
-        1300
+        -1184,
+        1440
       ]
     },
     {
       "parameters": {
         "functionCode": "const vulns = $json.vulnerabilities;\n\nreturn vulns.map((v, i) => {\n  return {\n    json: {\n      ...v,\n      aiRisk: [6.5, 9.1][i] || 5,\n      path: [\"self-healing\", \"expert-review\", \"monitoring\"][i % 3],\n      lev: [0.93, 0.72][i] || 0.45\n    }\n  };\n});"
       },
-      "id": "19eb1ac3-5ce2-48f1-b4f3-8807e968f068",
-      "name": "🤖 AI – Risk Evaluation",
+      "id": "640b0db9-9793-46d8-a1d9-a035de137014",
+      "name": "\ud83e\udd16 AI \u2013 Risk Evaluation",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
       "position": [
-        -1020,
-        1300
+        -880,
+        1440
       ]
     },
     {
       "parameters": {
         "functionCode": "const triage = {\n  self: [],\n  expert: [],\n  monitor: [],\n};\n\nconst assessed = $input.all();\n\nfor (const item of assessed) {\n  const v = item.json;\n  const levScore = v.lev || 0; // fallback if missing\n\n  if (levScore > 0.9) {\n    triage.expert.push({ ...v, levScore, levLabel: \"Critical\" });\n  } else if (levScore > 0.5) {\n    triage.self.push({ ...v, levScore, levLabel: \"High\" });\n  } else {\n    triage.monitor.push({ ...v, levScore, levLabel: \"Low\" });\n  }\n}\n\nreturn [{ json: triage }];"
       },
-      "id": "34374b11-c7a5-483c-8f69-d39b09d0b967",
-      "name": "📊 AI – Triage Vulnerabilities",
+      "id": "2b8af3ee-ae91-4d4c-9c37-547f5e80379a",
+      "name": "\ud83d\udcca AI \u2013 Triage Vulnerabilities",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
       "position": [
-        -860,
-        1300
+        -720,
+        1440
       ]
     },
     {
@@ -360,12 +347,11 @@
           "conditions": [
             {
               "id": "0888daeb-abba-419a-a069-ec47d7eef9ab",
-              "leftValue": "{{ $json.expert && $json.expert.length > 0 }}",
-              "rightValue": "true",
+              "leftValue": "={{ Number($json.expert[0].lev) }}",
+              "rightValue": 0.7,
               "operator": {
-                "type": "string",
-                "operation": "equals",
-                "name": "filter.operator.equals"
+                "type": "number",
+                "operation": "lt"
               }
             }
           ],
@@ -376,23 +362,23 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        -620,
-        1300
+        -480,
+        1440
       ],
-      "id": "338c4b2e-dbdb-484c-a517-244c6550f502",
-      "name": "🚦 ALERT – LEV Trigger"
+      "id": "bd1fafed-1560-43f1-9f16-f57c949fa527",
+      "name": "\ud83d\udea6 ALERT \u2013 LEV Trigger"
     },
     {
       "parameters": {
-        "functionCode": "const triage = $json;\nconst all = [...triage.expert, ...triage.self, ...triage.monitor];\n\n// Calculate max LEV score\nconst maxLEV = Math.max(...all.map(v => v.lev || 0));\n\n// Get top CVE (prefer expert > self > monitor)\nconst topCVE = triage.expert[0]?.cve || triage.self[0]?.cve || triage.monitor[0]?.cve || \"None\";\n\n// Final return\nreturn {\n  summary: {\n    expert: triage.expert.length,\n    self: triage.self.length,\n    monitor: triage.monitor.length,\n    total: all.length,\n    timestamp: new Date().toISOString(),\n    topCVE,\n    maxLEV\n  },\n  emailBody: `\n    <h2>🔍 Vulnerability Assessment Report</h2>\n    <p><strong>📅 Timestamp:</strong> ${new Date().toISOString()}</p>\n    <ul>\n      <li><strong>👨‍💻 Expert Group:</strong> ${triage.expert.length}</li>\n      <li><strong>🧪 Self Group:</strong> ${triage.self.length}</li>\n      <li><strong>📊 Monitor Group:</strong> ${triage.monitor.length}</li>\n      <li><strong>🚨 Max LEV Score:</strong> ${maxLEV}</li>\n      <li><strong>💡 Top CVE:</strong> ${topCVE}</li>\n    </ul>\n  `\n};"
+        "functionCode": "const t = $json;\nconst asArr = v => Array.isArray(v) ? v : [];\nconst expert  = asArr(t.expert);\nconst self    = asArr(t.self);\nconst monitor = asArr(t.monitor);\n\nconst all = [...expert, ...self, ...monitor];\nconst maxLEV = all.length ? Math.max(...all.map(v => Number(v?.lev ?? 0))) : 0;\n\nconst pickTopCVE = () => {\n  if (expert.length  && expert[0]?.cve)  return expert[0].cve;\n  if (self.length    && self[0]?.cve)    return self[0].cve;\n  if (monitor.length && monitor[0]?.cve) return monitor[0].cve;\n  return \"None\";\n};\n\nconst summary = {\n  expert:  expert.length,\n  self:    self.length,\n  monitor: monitor.length,\n  total:   expert.length + self.length + monitor.length,\n  timestamp: t.timestamp ?? new Date().toISOString(),\n  topCVE: pickTopCVE(),\n  maxLEV\n};\n\n// build HTML email body\nconst emailBody = `\n  <h2>\ud83d\udee1\ufe0f Vulnerability Assessment Report</h2>\n  <p><strong>\ud83d\udcc5 Timestamp:</strong> ${summary.timestamp}</p>\n  <ul>\n    <li><strong>\ud83d\udc64 Expert Group:</strong> ${summary.expert}</li>\n    <li><strong>\u270f\ufe0f Self Group:</strong> ${summary.self}</li>\n    <li><strong>\ud83d\udcca Monitor Group:</strong> ${summary.monitor}</li>\n    <li><strong>\ud83d\udcc8 Max LEV Score:</strong> ${summary.maxLEV}</li>\n    <li><strong>\ud83d\udca1 Top CVE:</strong> ${summary.topCVE}</li>\n  </ul>\n`;\n\nreturn [{\n  json: {\n    summary,\n    emailBody\n  }\n}];\n"
       },
-      "id": "481c9594-87d0-457f-af1c-b03868765fd5",
-      "name": "📝 REPORT – Generate Summary",
+      "id": "fe32b92a-32d4-483a-bfee-3d3ec5b52a23",
+      "name": "\ud83d\udcdd REPORT \u2013 Generate Summary",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
       "position": [
-        -860,
-        1820
+        -720,
+        1968
       ]
     },
     {
@@ -402,39 +388,28 @@
             {
               "id": "4d6df3e2-210b-43d6-8b71-edcfed2bf1fc",
               "name": "groupData",
-              "value": "={{ JSON.parse(JSON.stringify((() => {\n  const triage = $json;\n  const timestamp = new Date().toISOString();\n  return [\n    { timestamp, group: \"self\", count: triage.self.length || 0 },\n    { timestamp, group: \"expert\", count: triage.expert.length || 0 },\n    { timestamp, group: \"monitor\", count: triage.monitor.length || 0 }\n  ];\n})())) }}",
+              "value": "={{ (() => {\n  const t = $json;\n  const ts = new Date().toISOString();\n\n  const lev   = Number(t.expert?.[0]?.lev ?? 0);\n  const risk  = (t.expert?.[0]?.risk ?? '').toLowerCase();\n  const label = (t.expert?.[0]?.levLabel ?? '').toLowerCase();\n\n  const groups = [];\n\n  const isExpert = lev >= 0.8 || risk === 'high' || label === 'critical';\n\n  if (!isExpert && lev < 0.4) {\n    groups.push({ timestamp: ts, group: \"self\", count: 1 });\n  } else if (!isExpert && lev < 0.8) {\n    groups.push({ timestamp: ts, group: \"monitor\", count: 1 });\n  } else {\n    groups.push({ timestamp: ts, group: \"expert\", count: 1 });\n  }\n\n  return groups;\n})() }}",
               "type": "array"
             }
           ]
         },
+        "includeOtherFields": true,
         "options": {}
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -860,
-        1500
+        -720,
+        1664
       ],
-      "id": "657c0890-0dbd-4d1c-b6c8-51d451d66f6b",
-      "name": "🛠️ UTILS – Field Editor"
+      "id": "49d62750-b804-48e6-9b36-5ffff745bf7f",
+      "name": "\ud83d\udee0\ufe0f UTILS \u2013 Field Editor"
     },
     {
       "parameters": {
         "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "1XyiViyYOUGdUgngIEASMoBVLNEfs29DZ3H8gxGESny8",
-          "mode": "list",
-          "cachedResultName": "daily summary report",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XyiViyYOUGdUgngIEASMoBVLNEfs29DZ3H8gxGESny8/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "summary",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1XyiViyYOUGdUgngIEASMoBVLNEfs29DZ3H8gxGESny8/edit#gid=0"
-        },
+        "documentId": "={{ $env.GSHEET_ID }}",
+        "sheetName": "summary",
         "fieldsUi": {
           "fieldValues": [
             {
@@ -469,31 +444,25 @@
         },
         "options": {}
       },
-      "id": "af12b887-2a0f-4f87-a16e-05b32e0f81d4",
-      "name": "📄 EXPORT – Save to Sheet",
+      "id": "2d72b10c-0c90-481b-875b-13ba000050e7",
+      "name": "\ud83d\udcc4 EXPORT \u2013 Save to Sheet",
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 3,
       "position": [
-        -400,
-        1720
-      ],
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "sJHywbRNYHkS71FB",
-          "name": "Google Sheets account"
-        }
-      }
+        -256,
+        1856
+      ]
     },
     {
       "parameters": {},
       "type": "n8n-nodes-base.errorTrigger",
       "typeVersion": 1,
       "position": [
-        -1780,
-        260
+        -1600,
+        400
       ],
-      "id": "c27b1b3d-da02-4604-b49b-5c67e9da9aa2",
-      "name": " ERROR – On Failure"
+      "id": "653749b5-9d34-498a-a7f0-2b5c18fa774a",
+      "name": " ERROR \u2013 On Failure"
     },
     {
       "parameters": {
@@ -530,29 +499,17 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        -1600,
-        260
+        -1376,
+        400
       ],
-      "id": "f26f685f-f45f-43ba-8542-a364bacb7568",
-      "name": "🛠️ UTILS – Set Grouped Data"
+      "id": "3ca8fb75-c857-4244-968a-9c95b3f78a98",
+      "name": "\ud83d\udee0\ufe0f UTILS \u2013 Set Grouped Data"
     },
     {
       "parameters": {
         "operation": "append",
-        "documentId": {
-          "__rl": true,
-          "value": "1024Ps_bl1coCUNUKG0mavIV6Nx2bKS1Wi_c5YGyCKTE",
-          "mode": "list",
-          "cachedResultName": "error_log",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1024Ps_bl1coCUNUKG0mavIV6Nx2bKS1Wi_c5YGyCKTE/edit?usp=drivesdk"
-        },
-        "sheetName": {
-          "__rl": true,
-          "value": "gid=0",
-          "mode": "list",
-          "cachedResultName": "logs",
-          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1024Ps_bl1coCUNUKG0mavIV6Nx2bKS1Wi_c5YGyCKTE/edit#gid=0"
-        },
+        "documentId": "={{ $env.GSHEET_ID }}",
+        "sheetName": "logs",
         "columns": {
           "mappingMode": "defineBelow",
           "value": {
@@ -612,21 +569,15 @@
       "type": "n8n-nodes-base.googleSheets",
       "typeVersion": 4.5,
       "position": [
-        -1280,
-        260
+        -1136,
+        400
       ],
-      "id": "9ae08f82-748a-4d8f-9231-261c13362577",
-      "name": "📄 EXPORT – Sheet Append",
-      "credentials": {
-        "googleSheetsOAuth2Api": {
-          "id": "sJHywbRNYHkS71FB",
-          "name": "Google Sheets account"
-        }
-      }
+      "id": "b79adb58-e385-46bb-8211-2e9d1cedf567",
+      "name": "\ud83d\udcc4 EXPORT \u2013 Sheet Append"
     },
     {
       "parameters": {
-        "content": "⏱️ Trigger – Scheduled Scan            \tTrigger scan daily/weekly\n🔐 AUTH – Login to Nessus\t        Login to scanner API\n🔐 AUTH – Set API Token\t                Store token securely for session\n🌐 DISC – Init Segments\t                Initialize IP ranges or subnets\n🌐 DISC – Discover Assets        \tIdentify hosts in network scope\n🧠 AI – Process Assets          \tRefine asset list for scan input\n🔄 UTILS – Split Assets          \tSplit asset data for scanning\n🧪 SCAN – Run Nessus\t                Perform scan via Nessus\n🔍 SCAN – Process Findings       \tParse and extract vulnerability data\n🤖 AI – Risk Evaluation\t                Analyze risk scores using logic/ML\n📊 AI – Triage Findings\t                Categorize severity groups\n🚦 ALERT – LEV Trigger\t                Check if LEV exceeds threshold\n📧 EMAIL – Alert\t                Send report to security team\n📝 REPORT – Generate Summary\t        Prepare summary for export/report\n🛠️ UTILS – Field Editor\t                Adjust field format for export\n📄 EXPORT – Save to Sheet\t        Log results in Google Sheet\n⚠️ ERROR – On Failure\t                Trigger error handler on failure\n🛠️ UTILS – Set Grouped Data      \tFormat grouped output\n📄 EXPORT – Sheet Append\t        Store vulnerability data",
+        "content": "\u23f1\ufe0f Trigger \u2013 Scheduled Scan            \tTrigger scan daily/weekly\n\ud83d\udd10 AUTH \u2013 Login to Nessus\t        Login to scanner API\n\ud83d\udd10 AUTH \u2013 Set API Token\t                Store token securely for session\n\ud83c\udf10 DISC \u2013 Init Segments\t                Initialize IP ranges or subnets\n\ud83c\udf10 DISC \u2013 Discover Assets        \tIdentify hosts in network scope\n\ud83e\udde0 AI \u2013 Process Assets          \tRefine asset list for scan input\n\ud83d\udd04 UTILS \u2013 Split Assets          \tSplit asset data for scanning\n\ud83e\uddea SCAN \u2013 Run Nessus\t                Perform scan via Nessus\n\ud83d\udd0d SCAN \u2013 Process Findings       \tParse and extract vulnerability data\n\ud83e\udd16 AI \u2013 Risk Evaluation\t                Analyze risk scores using logic/ML\n\ud83d\udcca AI \u2013 Triage Findings\t                Categorize severity groups\n\ud83d\udea6 ALERT \u2013 LEV Trigger\t                Check if LEV exceeds threshold\n\ud83d\udce7 EMAIL \u2013 Alert\t                Send report to security team\n\ud83d\udcdd REPORT \u2013 Generate Summary\t        Prepare summary for export/report\n\ud83d\udee0\ufe0f UTILS \u2013 Field Editor\t                Adjust field format for export\n\ud83d\udcc4 EXPORT \u2013 Save to Sheet\t        Log results in Google Sheet\n\u26a0\ufe0f ERROR \u2013 On Failure\t                Trigger error handler on failure\n\ud83d\udee0\ufe0f UTILS \u2013 Set Grouped Data      \tFormat grouped output\n\ud83d\udcc4 EXPORT \u2013 Sheet Append\t        Store vulnerability data",
         "height": 400,
         "width": 760,
         "color": 7
@@ -634,15 +585,15 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1840,
-        560
+        -1696,
+        688
       ],
-      "id": "ceea68a1-5323-4e26-af05-0c333c136f61",
+      "id": "af364688-b2fb-4bfe-b669-6f0802f4a0fa",
       "name": "Sticky Note6"
     },
     {
       "parameters": {
-        "content": "\n\n🔍 IDENTIFY — Asset & Risk Awareness\n\nIdentify all hardware, software, and assets connected to the network.  \n- Login to Nessus  \n- Initialize segments  \n- Discover assets  \n- Tag metadata  \n(NIST: ID.AM-1, ID.AM-2)\n\n✅ Nodes \n\nAUTH - Login to Nessus\n\nDISC - Initialize Network Segments\n\nDISC - Discover Assets\n\nAI - Process Assets\n",
+        "content": "\n\n\ud83d\udd0d IDENTIFY \u2014 Asset & Risk Awareness\n\nIdentify all hardware, software, and assets connected to the network.  \n- Login to Nessus  \n- Initialize segments  \n- Discover assets  \n- Tag metadata  \n(NIST: ID.AM-1, ID.AM-2)\n\n\u2705 Nodes \n\nAUTH - Login to Nessus\n\nDISC - Initialize Network Segments\n\nDISC - Discover Assets\n\nAI - Process Assets\n",
         "height": 360,
         "width": 500,
         "color": 5
@@ -650,15 +601,15 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -140,
-        40
+        0,
+        176
       ],
-      "id": "07c7104c-7217-42e5-9d35-db6732577adb",
+      "id": "6750be3c-9ece-43a9-ac14-bada35158e72",
       "name": "Sticky Note7"
     },
     {
       "parameters": {
-        "content": "\n\n🛡️ PROTECT — Baseline Security Control\n\nEstablish controls to limit or contain security events.  \n- Scheduled scans  \n- Role-based scan control  \n- Ensure credentials securely managed  \n(NIST: PR.AC-1, PR.PT-1)\n\n✅ Nodes \n\nTrigger - Scheduled Scan\n\nAUTH - Set API Token\n",
+        "content": "\n\n\ud83d\udee1\ufe0f PROTECT \u2014 Baseline Security Control\n\nEstablish controls to limit or contain security events.  \n- Scheduled scans  \n- Role-based scan control  \n- Ensure credentials securely managed  \n(NIST: PR.AC-1, PR.PT-1)\n\n\u2705 Nodes \n\nTrigger - Scheduled Scan\n\nAUTH - Set API Token\n",
         "height": 300,
         "width": 500,
         "color": 5
@@ -666,15 +617,15 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -140,
-        420
+        0,
+        560
       ],
-      "id": "7fb065fb-50fb-4abd-abc3-2e70a063ecf5",
+      "id": "8fbf4b3c-64bc-434c-bfb0-67703cc04bda",
       "name": "Sticky Note9"
     },
     {
       "parameters": {
-        "content": "🧠 AI Calculate Risk phase",
+        "content": "\ud83e\udde0 AI Calculate Risk phase",
         "height": 200,
         "width": 680,
         "color": 3
@@ -682,15 +633,15 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1160,
-        1280
+        -1024,
+        1408
       ],
-      "id": "93304aa3-f1b7-4468-9f63-061fbbe3ebf5",
+      "id": "57e3f5b4-a165-44bd-909a-8e5f3672c3e2",
       "name": "Sticky Note10"
     },
     {
       "parameters": {
-        "content": "\n\n🚨 DETECT — Vulnerability & Threat Scan\n\nContinuously monitor to detect anomalies or security events.  \n- Asset split-out  \n- Scan via Nessus  \n- Process vulnerability data  \n(NIST: DE.CM-1, DE.CM-8)\n\n✅ Nodes:\n\nUTILS - Split Assets\n\nSCAN - Run Nessus\n\nSCAN - Process Vulnerabilities\n",
+        "content": "\n\n\ud83d\udea8 DETECT \u2014 Vulnerability & Threat Scan\n\nContinuously monitor to detect anomalies or security events.  \n- Asset split-out  \n- Scan via Nessus  \n- Process vulnerability data  \n(NIST: DE.CM-1, DE.CM-8)\n\n\u2705 Nodes:\n\nUTILS - Split Assets\n\nSCAN - Run Nessus\n\nSCAN - Process Vulnerabilities\n",
         "height": 360,
         "width": 500,
         "color": 2
@@ -698,15 +649,15 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -140,
-        740
+        0,
+        880
       ],
-      "id": "f187080f-4d7a-49df-8deb-75dd36665651",
+      "id": "96fe73e8-db97-4b2f-b05b-9e3ebd3ad85e",
       "name": "Sticky Note11"
     },
     {
       "parameters": {
-        "content": "\n\n⚠️ RESPOND — Risk Intelligence & Alerts\n\nAnalyze, prioritize, and respond to detected threats.  \n- AI-based LEV scoring  \n- Triage vulnerabilities  \n- Trigger critical alerts  \n(NIST: RS.AN-1, RS.RP-1)\n\n✅ Nodes:\n\nAI - Risk Evaluation\n\nAI - Triage Vulnerabilities\n\nALERT - LEV Trigger",
+        "content": "\n\n\u26a0\ufe0f RESPOND \u2014 Risk Intelligence & Alerts\n\nAnalyze, prioritize, and respond to detected threats.  \n- AI-based LEV scoring  \n- Triage vulnerabilities  \n- Trigger critical alerts  \n(NIST: RS.AN-1, RS.RP-1)\n\n\u2705 Nodes:\n\nAI - Risk Evaluation\n\nAI - Triage Vulnerabilities\n\nALERT - LEV Trigger",
         "height": 340,
         "width": 500,
         "color": 3
@@ -714,15 +665,15 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -140,
-        1120
+        0,
+        1248
       ],
-      "id": "987e0856-efd8-41b4-9399-a386b669d751",
+      "id": "8186e2dc-55da-4057-871c-5eb4166c729f",
       "name": "Sticky Note12"
     },
     {
       "parameters": {
-        "content": "\n\n🔁 RECOVER — Reporting & Remediation Support\n\nDocument, communicate, and improve based on assessments.  \n- Generate summary  \n- Email report to team  \n- Export to Google Sheets  \n(NIST: RC.IM-1, RC.CO-1)\n\n✅ Nodes:\n\nREPORT - Generate Summary\n\nEXPORT - Save to Sheet\n\nSend Email\n\n",
+        "content": "\n\n\ud83d\udd01 RECOVER \u2014 Reporting & Remediation Support\n\nDocument, communicate, and improve based on assessments.  \n- Generate summary  \n- Email report to team  \n- Export to Google Sheets  \n(NIST: RC.IM-1, RC.CO-1)\n\n\u2705 Nodes:\n\nREPORT - Generate Summary\n\nEXPORT - Save to Sheet\n\nSend Email\n\n",
         "height": 340,
         "width": 500,
         "color": 6
@@ -730,15 +681,15 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -140,
-        1480
+        0,
+        1616
       ],
-      "id": "496dabfa-4ecb-4f9f-8633-0877f5e9698f",
+      "id": "b1233777-7698-47c1-9f8b-c2735e329288",
       "name": "Sticky Note2"
     },
     {
       "parameters": {
-        "content": "\n\n\nCyberScan presenting an evidence-based, industry-backed strategy:\n\nLEV metric enhances risk-based prioritization.\n\nCyberScan showcase the flaws in EPSS and how you overcome them.\n\nCyberScan align with federal cybersecurity directives (like BOD 22-01 and KEV compliance).\n\nThis makes CyberScan audit-friendly, policy-aligned, and modern—something many companies care about.\n\n\n                                                                                                            \n\n\n\n\n| **1. Identify** | “🧠 Threat Inventory & CVE Scope”        | Maps to CVE enumeration; ensures CyberScan starts by identifying scope of all assets and their exposure, Based on NVD/CVE/EPSS\n                                                              \n\n| **2. Protect**  | “🔐 Hardening & Patch Guidance”          | Aligns with remediation prioritization from LEV + KEV lists. Focus on patch strategies & mitigation workflows.                  \n\n\n| **3. Detect**   | “🛰️ Vulnerability Monitoring Logic”      | Covers how CyberScan detects exploit attempts using EPSS predictions and LEV metric to find *likely exploited vulnerabilities*. \n\n\n| **4. Respond**  | “🚨 Automated Risk Response”             | Showcases logic for how CyberScan handles high-risk CVEs (KEV, LEV > 0.9), sending alerts or blocking actions.                  \n\n\n| **5. Recover**  | “♻️ Learning & Improvement Loop”         | Focus on logging, metrics, audit trail, and recurring updates using EPSS and NIST recommendations. Enables cyber resilience.    \n\n\n",
+        "content": "\n\n\nCyberScan presenting an evidence-based, industry-backed strategy:\n\nLEV metric enhances risk-based prioritization.\n\nCyberScan showcase the flaws in EPSS and how you overcome them.\n\nCyberScan align with federal cybersecurity directives (like BOD 22-01 and KEV compliance).\n\nThis makes CyberScan audit-friendly, policy-aligned, and modern\u2014something many companies care about.\n\n\n                                                                                                            \n\n\n\n\n| **1. Identify** | \u201c\ud83e\udde0 Threat Inventory & CVE Scope\u201d        | Maps to CVE enumeration; ensures CyberScan starts by identifying scope of all assets and their exposure, Based on NVD/CVE/EPSS\n                                                              \n\n| **2. Protect**  | \u201c\ud83d\udd10 Hardening & Patch Guidance\u201d          | Aligns with remediation prioritization from LEV + KEV lists. Focus on patch strategies & mitigation workflows.                  \n\n\n| **3. Detect**   | \u201c\ud83d\udef0\ufe0f Vulnerability Monitoring Logic\u201d      | Covers how CyberScan detects exploit attempts using EPSS predictions and LEV metric to find *likely exploited vulnerabilities*. \n\n\n| **4. Respond**  | \u201c\ud83d\udea8 Automated Risk Response\u201d             | Showcases logic for how CyberScan handles high-risk CVEs (KEV, LEV > 0.9), sending alerts or blocking actions.                  \n\n\n| **5. Recover**  | \u201c\u267b\ufe0f Learning & Improvement Loop\u201d         | Focus on logging, metrics, audit trail, and recurring updates using EPSS and NIST recommendations. Enables cyber resilience.    \n\n\n",
         "height": 540,
         "width": 1240,
         "color": 7
@@ -746,10 +697,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        380,
-        40
+        528,
+        176
       ],
-      "id": "72ec5990-d65b-4dea-9570-a450f5b12256",
+      "id": "65c883da-c0b1-4920-b585-f21d10fd9533",
       "name": "Sticky Note8"
     },
     {
@@ -762,10 +713,10 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -1040,
-        -80
+        -896,
+        48
       ],
-      "id": "fd06cc70-22bd-44fe-bb80-92a56976ab90",
+      "id": "e35b7094-3977-4a02-a498-2dae499be13d",
       "name": "Sticky Note13"
     },
     {
@@ -778,15 +729,15 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        380,
-        -120
+        528,
+        0
       ],
-      "id": "9a09262e-327c-4bd6-a226-b9fffcdbab4e",
+      "id": "01150d97-01e9-4b78-9050-6c343217b4c8",
       "name": "Sticky Note14"
     },
     {
       "parameters": {
-        "content": "\n\n📌 Compliance Alignment\n\n✅ CyberScan aligns with NIST CSF Cybersecurity controls designed around the 5 core NIST functions.  \nBuilt on n8n, supports compliance reporting.\n",
+        "content": "\n\n\ud83d\udccc Compliance Alignment\n\n\u2705 CyberScan aligns with NIST CSF Cybersecurity controls designed around the 5 core NIST functions.  \nBuilt on n8n, supports compliance reporting.\n",
         "height": 140,
         "width": 500,
         "color": 7
@@ -794,15 +745,15 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        -140,
-        -120
+        0,
+        0
       ],
-      "id": "75c4e2f7-90f1-468e-a930-f84bba5cc8d2",
+      "id": "d6c920ba-8314-4800-9984-52ddadb50f2c",
       "name": "Sticky Note15"
     },
     {
       "parameters": {
-        "content": "\n\n\nGlossary of Key Terms\n                                                                                                                           |\n\n| **LEV**       | **Likely Exploited Vulnerabilities**                                       | A scoring system by NIST (in CSWP 41) that predicts if a vulnerability is likely to be exploited based on real-world intelligence.                 |\n\n| **BOD 22-01** | **Binding Operational Directive 22-01**                                    | A federal mandate requiring U.S. government agencies to patch known exploited vulnerabilities from CISA’s KEV catalog.                             |\n\n| **NIST CSF**  | **National Institute of Standards and Technology Cybersecurity Framework** | A 5-stage security model (Identify, Protect, Detect, Respond, Recover) used by governments and enterprises for cyber defense planning.             |\n\n| **EPSS**      | **Exploit Prediction Scoring System**                                      | A machine-learning based model that estimates the probability of a CVE being exploited within the next 30 days.                                    |\n\n| **CSWP**      | **Cybersecurity White Paper**                                              | A detailed NIST publication that shares new concepts, guidance, and metrics for cybersecurity defense (e.g., CSWP.41 introduced LEV).              |\n\n| **KEV**       | **Known Exploited Vulnerabilities**                                        | A catalog from CISA that lists CVEs confirmed to be actively exploited in the wild.                                                                |\n\n| **UTILS**     | **CyberScan Utilities** (Custom term in your workflow)                     | Utility nodes in your workflow, like date formatters, filters, or metadata handlers. You can rename this group to \"UTILS\" for better organization. |\n\n| **CVE**       | **Common Vulnerabilities and Exposures**                                   | An ID system used to catalog known cybersecurity vulnerabilities in software and hardware.                                                         |\n\n| **CISA**      | **Cybersecurity and Infrastructure Security Agency**                       | A U.S. federal agency that maintains the KEV list and enforces directives like BOD 22-01.                                                          |\n",
+        "content": "\n\n\nGlossary of Key Terms\n                                                                                                                           |\n\n| **LEV**       | **Likely Exploited Vulnerabilities**                                       | A scoring system by NIST (in CSWP 41) that predicts if a vulnerability is likely to be exploited based on real-world intelligence.                 |\n\n| **BOD 22-01** | **Binding Operational Directive 22-01**                                    | A federal mandate requiring U.S. government agencies to patch known exploited vulnerabilities from CISA\u2019s KEV catalog.                             |\n\n| **NIST CSF**  | **National Institute of Standards and Technology Cybersecurity Framework** | A 5-stage security model (Identify, Protect, Detect, Respond, Recover) used by governments and enterprises for cyber defense planning.             |\n\n| **EPSS**      | **Exploit Prediction Scoring System**                                      | A machine-learning based model that estimates the probability of a CVE being exploited within the next 30 days.                                    |\n\n| **CSWP**      | **Cybersecurity White Paper**                                              | A detailed NIST publication that shares new concepts, guidance, and metrics for cybersecurity defense (e.g., CSWP.41 introduced LEV).              |\n\n| **KEV**       | **Known Exploited Vulnerabilities**                                        | A catalog from CISA that lists CVEs confirmed to be actively exploited in the wild.                                                                |\n\n| **UTILS**     | **CyberScan Utilities** (Custom term in your workflow)                     | Utility nodes in your workflow, like date formatters, filters, or metadata handlers. You can rename this group to \"UTILS\" for better organization. |\n\n| **CVE**       | **Common Vulnerabilities and Exposures**                                   | An ID system used to catalog known cybersecurity vulnerabilities in software and hardware.                                                         |\n\n| **CISA**      | **Cybersecurity and Infrastructure Security Agency**                       | A U.S. federal agency that maintains the KEV list and enforces directives like BOD 22-01.                                                          |\n",
         "height": 440,
         "width": 1560,
         "color": 7
@@ -810,24 +761,11 @@
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        380,
-        600
+        528,
+        736
       ],
-      "id": "df706700-7bf4-4e19-a432-63749c05f7b2",
+      "id": "fd7684de-671e-4925-87e4-66037d7d9859",
       "name": "Sticky Note16"
-    },
-    {
-      "parameters": {
-        "jsCode": "const msg = $json[\"error message\"] || \"\";\nconst sanitized = msg\n  .replace(/\\b\\d{1,3}(\\.\\d{1,3}){3}\\b/g, '***.***.***.***')       // IPs\n  .replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}/g, '[email]')\n  .replace(/apikey=\\w+/gi, 'apikey=[redacted]')\n  .replace(/https:\\/\\/[^\\s]+/g, 'https://[url]');\n\nreturn [{ json: {\n  timestamp: $json[\"timestamp\"],\n  workflow: $json[\"workflow\"],\n  node: $json[\"node\"],\n  \"error message\": sanitized\n}}];"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        -1440,
-        260
-      ],
-      "id": "8c120e7f-c8e0-4173-a58f-11d6dedb2998",
-      "name": "Code1"
     }
   ],
   "pinData": {},
@@ -836,158 +774,158 @@
       "main": [
         [
           {
-            "node": "📄 EXPORT – Save to Sheet",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "⏱️ Trigger – Scheduled Scan": {
-      "main": [
-        [
-          {
-            "node": "🔐 AUTH – Login to Nessus",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "🔐 AUTH – Login to Nessus": {
-      "main": [
-        [
-          {
-            "node": "🔐 AUTH – Set API Token",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "🔐 AUTH – Set API Token": {
-      "main": [
-        [
-          {
-            "node": "🌐 DISC – Initialize Network Segments",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "🌐 DISC – Initialize Network Segments": {
-      "main": [
-        [
-          {
-            "node": "🌐 DISC – Discover Assets",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "🌐 DISC – Discover Assets": {
-      "main": [
-        [
-          {
-            "node": "🧠 AI – Process Assets",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "🧠 AI – Process Assets": {
-      "main": [
-        [
-          {
-            "node": "🔄 UTILS – Split Assets",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "🔄 UTILS – Split Assets": {
-      "main": [
-        [
-          {
-            "node": "🧪 SCAN – Run Nessus",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "🧪 SCAN – Run Nessus": {
-      "main": [
-        [
-          {
-            "node": "🔍 SCAN – Process Vulnerabilities",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "🔍 SCAN – Process Vulnerabilities": {
-      "main": [
-        [
-          {
-            "node": "🤖 AI – Risk Evaluation",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "🤖 AI – Risk Evaluation": {
-      "main": [
-        [
-          {
-            "node": "📊 AI – Triage Vulnerabilities",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "📊 AI – Triage Vulnerabilities": {
-      "main": [
-        [
-          {
-            "node": "🚦 ALERT – LEV Trigger",
+            "node": "\ud83d\udcc4 EXPORT \u2013 Save to Sheet",
             "type": "main",
             "index": 0
           },
           {
-            "node": "🛠️ UTILS – Field Editor",
+            "node": "\ud83d\udcdd REPORT \u2013 Generate Summary",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "🚦 ALERT – LEV Trigger": {
+    "\u23f1\ufe0f Trigger \u2013 Scheduled Scan": {
       "main": [
         [
           {
-            "node": "📧 Alert Security Team",
+            "node": "\ud83d\udd10 AUTH \u2013 Login to Nessus",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\ud83d\udd10 AUTH \u2013 Login to Nessus": {
+      "main": [
+        [
+          {
+            "node": "\ud83d\udd10 AUTH \u2013 Set API Token",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\ud83d\udd10 AUTH \u2013 Set API Token": {
+      "main": [
+        [
+          {
+            "node": "\ud83c\udf10 DISC \u2013 Initialize Network Segments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\ud83c\udf10 DISC \u2013 Initialize Network Segments": {
+      "main": [
+        [
+          {
+            "node": "\ud83c\udf10 DISC \u2013 Discover Assets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\ud83c\udf10 DISC \u2013 Discover Assets": {
+      "main": [
+        [
+          {
+            "node": "\ud83e\udde0 AI \u2013 Process Assets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\ud83e\udde0 AI \u2013 Process Assets": {
+      "main": [
+        [
+          {
+            "node": "\ud83d\udd04 UTILS \u2013 Split Assets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\ud83d\udd04 UTILS \u2013 Split Assets": {
+      "main": [
+        [
+          {
+            "node": "\ud83e\uddea SCAN \u2013 Run Nessus",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\ud83e\uddea SCAN \u2013 Run Nessus": {
+      "main": [
+        [
+          {
+            "node": "\ud83d\udd0d SCAN \u2013 Process Vulnerabilities",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\ud83d\udd0d SCAN \u2013 Process Vulnerabilities": {
+      "main": [
+        [
+          {
+            "node": "\ud83e\udd16 AI \u2013 Risk Evaluation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\ud83e\udd16 AI \u2013 Risk Evaluation": {
+      "main": [
+        [
+          {
+            "node": "\ud83d\udcca AI \u2013 Triage Vulnerabilities",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\ud83d\udcca AI \u2013 Triage Vulnerabilities": {
+      "main": [
+        [
+          {
+            "node": "\ud83d\udea6 ALERT \u2013 LEV Trigger",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "\ud83d\udea6 ALERT \u2013 LEV Trigger": {
+      "main": [
+        [
+          {
+            "node": "\ud83d\udce7 Alert Security Team",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "📝 REPORT – Generate Summary",
+            "node": "\ud83d\udee0\ufe0f UTILS \u2013 Field Editor",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "📝 REPORT – Generate Summary": {
+    "\ud83d\udcdd REPORT \u2013 Generate Summary": {
       "main": [
         [
           {
@@ -996,14 +934,14 @@
             "index": 0
           },
           {
-            "node": "📄 EXPORT – Save to Sheet",
+            "node": "\ud83d\udcc4 EXPORT \u2013 Save to Sheet",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "🛠️ UTILS – Field Editor": {
+    "\ud83d\udee0\ufe0f UTILS \u2013 Field Editor": {
       "main": [
         [
           {
@@ -1014,38 +952,22 @@
         ]
       ]
     },
-    "📄 EXPORT – Save to Sheet": {
-      "main": [
-        []
-      ]
-    },
-    " ERROR – On Failure": {
+    " ERROR \u2013 On Failure": {
       "main": [
         [
           {
-            "node": "🛠️ UTILS – Set Grouped Data",
+            "node": "\ud83d\udee0\ufe0f UTILS \u2013 Set Grouped Data",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "🛠️ UTILS – Set Grouped Data": {
+    "\ud83d\udee0\ufe0f UTILS \u2013 Set Grouped Data": {
       "main": [
         [
           {
-            "node": "Code1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code1": {
-      "main": [
-        [
-          {
-            "node": "📄 EXPORT – Sheet Append",
+            "node": "\ud83d\udcc4 EXPORT \u2013 Sheet Append",
             "type": "main",
             "index": 0
           }
@@ -1055,15 +977,12 @@
   },
   "active": false,
   "settings": {
-    "executionOrder": "v1",
-    "timezone": "Australia/Sydney",
-    "callerPolicy": "workflowsFromSameOwner"
+    "executionOrder": "v1"
   },
-  "versionId": "4f90f7a3-81cc-4334-a2df-5f9daf68939e",
+  "versionId": "65a72dfe-1c00-4d92-a2f1-2cfa6bc820dc",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "afe2b8648fee0c23760b8fce92c71dc65d1dd8bea264642e620dc8c34f1224d7"
+    "instanceId": "REDACTED"
   },
-  "id": "NFAdtz3N4rRUqnzA",
+  "id": "xs4eOv0YogQgWKQ8",
   "tags": []
 }
